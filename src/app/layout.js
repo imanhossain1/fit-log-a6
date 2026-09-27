@@ -1,39 +1,41 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+// import {GymProvider} from "@/context/GymContext";
+// import {GymProvider} from "../context/GymContext";
+import { GymProvider } from "../context/gymContext";
+// akta o kaj kore na 
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
 export const metadata = {
-  title: "FitLog",
-  description: "Workout Library",
+    title: "FitLog",
+    description: "Workout Library",
 };
 
-export default function RootLayout({ children }) {
-  return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <Navbar />
+export default function RootLayout({children}) {
+    return (
+        <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+            <body className="min-h-full flex flex-col">
+                <GymProvider>
+                    <Navbar />
 
-        <main>
-          {children}
-        </main>
+                    <section>{children}</section>
 
-        <Footer />
-      </body>
-    </html>
-  );
+                    <Footer />
+                </GymProvider>
+            </body>
+        </html>
+    );
 }

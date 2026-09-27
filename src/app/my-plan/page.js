@@ -1,9 +1,18 @@
-import React from 'react'
+"use client"
+import React, { useContext } from "react";
+
+import { GymContext } from "../../context/gymContext"; 
+
+ 
 
 function MyPlanPage() {
+     const { plan, setPlan, saved, setSaved } = useContext(GymContext)
+
+
   return (
     <div>
-        myplan page 
+      <h1>  plan selecta data   {plan.length}</h1>
+      <h1>  save selecta data   {saved.length}</h1>
     </div>
   )
 }

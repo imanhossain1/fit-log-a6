@@ -1,13 +1,12 @@
 import Banner from "../components/Banner";
-import WorkoutPage from "./workouts/WorkoutPage";
-
-function HomePage() {
+// import WorkoutCard from "../components/WorkoutCard";
+const HomePage = () => {
   return (
     <div>
       <Banner />
-      <WorkoutPage />
+      {/* <WorkoutCard/>  */}
     </div>
   );
-}
+};
 
 export default HomePage;
