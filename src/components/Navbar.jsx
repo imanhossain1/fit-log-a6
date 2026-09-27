@@ -1,19 +1,19 @@
 
 "use client";
-
+import { useContext } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import { GymContext } from "@/context/gymContext";
 const navItems = [
   { name: "Workout", href: "/workouts" },
   { name: "My Plan", href: "/my-plan" },
 ];
 
+
+
 export default function Navbar() {
   const pathname = usePathname();
-
-  const planCount = 3;
-  const savedCount = 5;
+  const { plan,  saved } = useContext(GymContext);
 
   return (
     <header className="sticky top-0 z-50 bg-base-100/95 backdrop-blur border-b border-base-200">
@@ -53,11 +53,11 @@ export default function Navbar() {
         {/* Desktop Counters */}
         <div className="navbar-end hidden items-center gap-2 md:flex">
           <Link href="/my-plan" className="rounded-full bg-[#ccff00] px-4 py-2 text-sm font-bold text-black">
-            Plan {planCount}
+            Plan {plan.length}
           </Link>
 
           <Link  href="/my-plan" className="rounded-full border border-base-content px-4 py-2 text-sm font-bold">
-            Saved {savedCount}
+            Saved {saved.length}
           </Link>
         </div>
 
@@ -107,11 +107,11 @@ export default function Navbar() {
               <li className="mt-2 border-t border-base-200 pt-3">
                 <div className="flex gap-2">
                   <Link href="/my-plan" className="rounded-full bg-[#ccff00] px-3 py-2 text-xs font-bold text-black">
-                    Plan {planCount}
+                    Plan {plan.length}
                   </Link >
 
                   <Link href="/workout" className="rounded-full border border-base-content px-3 py-2 text-xs font-bold">
-                    Saved {savedCount}
+                    Saved {saved.length}
                   </Link >
                 </div>
               </li>
