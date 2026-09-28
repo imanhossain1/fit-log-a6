@@ -1,7 +1,7 @@
 import Link from "next/link";
 import DetailsButtons from "./DetailsButtons";
 
-const WorkoutDetailsPage = async ({params}) => {
+const WorkoutDetailsPage = async ({params }) => {
    
     const {id} = await params;
 
@@ -20,7 +20,7 @@ const WorkoutDetailsPage = async ({params}) => {
 
     const workout = await response.json();
 
-    console.log(workout);
+
 
     return (
         <section className="min-h-screen bg-base-100">

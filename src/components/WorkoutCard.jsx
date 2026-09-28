@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const WorkoutCard = ({ workout }) => {
+  console.log(workout, 'home check')
   return (
     <Link href={`/workouts/${workout.id}`}>
       <article className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 transition hover:-translate-y-1 hover:border-lime-400">

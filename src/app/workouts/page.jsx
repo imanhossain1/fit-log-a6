@@ -1,29 +1,47 @@
+
+"use client";
+
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import WorkoutCard from "../../components/WorkoutCard";
 
 const PROGRAMMING_API_URL =
   "https://api.api-store.workers.dev/api/fitlog";
 
-const getWorkouts = async () => {
-  const response = await fetch(PROGRAMMING_API_URL);
+const WorkoutPages = () => {
+  const pathname = usePathname();
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch workout data");
-  }
+  const [workouts, setWorkouts] = useState([]);
 
-  const data = await response.json();
+  useEffect(() => {
+    const getWorkouts = async () => {
+      const response = await fetch(PROGRAMMING_API_URL);
 
-  return data;
-};
+      if (!response.ok) {
+        throw new Error("Failed to fetch workout data");
+      }
 
-const WorkoutPages = async () => {
-  const workouts = await getWorkouts();
+      const data = await response.json();
+
+      setWorkouts(data);
+    };
+
+    getWorkouts();
+  }, []);
+
+  // Home page হলে ৬টা, workouts page হলে সব
+  const displayWorkouts =
+    pathname === "/"
+      ? workouts.slice(0, 6)
+      : workouts;
 
   return (
     <main className="min-h-screen bg-black px-4 py-12 text-white md:px-8 lg:px-12">
+
       {/* Page Header */}
       <section className="mx-auto mb-10 max-w-7xl">
         <p className="mb-2 text-sm font-semibold tracking-[0.3em] text-lime-400">
-          WORKOUT LIBRARY 
+          WORKOUT LIBRARY
         </p>
 
         <h1 className="text-4xl font-bold md:text-5xl">
@@ -37,10 +55,17 @@ const WorkoutPages = async () => {
 
       {/* Workout Cards */}
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {workouts.map((workout) => <WorkoutCard key={workout.id} workout={workout}></WorkoutCard>)}
+        {displayWorkouts.map((workout) => (
+          <WorkoutCard
+            key={workout.id}
+            workout={workout}
+          />
+        ))}
       </section>
+
     </main>
   );
 };
 
 export default WorkoutPages;
+
