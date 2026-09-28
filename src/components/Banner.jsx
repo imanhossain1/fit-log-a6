@@ -30,7 +30,7 @@ export default function Banner() {
 
           {/* CTA */}
           <Link
-            href="#library"
+            href="/workouts"
             className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#ccff00] px-6 py-3 font-bold text-black transition hover:scale-105 hover:bg-[#bfff00]"
           >
             BROWSE WORKOUTS

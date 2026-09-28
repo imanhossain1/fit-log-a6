@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { GymContext } from "@/context/gymContext";
 const navItems = [
+  { name: "Home", href: "/" },
   { name: "Workout", href: "/workouts" },
   { name: "My Plan", href: "/my-plan" },
 ];
